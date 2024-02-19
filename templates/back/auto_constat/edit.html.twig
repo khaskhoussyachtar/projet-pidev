@@ -1,13 +1,24 @@
-{% extends 'front/base_front.html.twig' %}
+{% extends 'back/base_back.html.twig' %}
 
 {% block title %}Edit Constat{% endblock %}
 
 {% block body %}
-    <h1>Edit Constat</h1>
 
-    {{ include('front/auto_constat/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_auto_constat_index') }}">back to list</a>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Edit Constat</h6>
+    </div>
+    <div class="card-body">
 
-    {{ include('front/auto_constat/_delete_form.html.twig') }}
+
+    {{ include('back/auto_constat/_form.html.twig', {'button_label': 'Update'}) }}
+        <br><br>
+
+    <a href="{{ path('back_app_auto_constat_index') }}" class="btn btn-success">back to list</a>
+
+    {{ include('back/auto_constat/_delete_form.html.twig') }}
+
+    </div>
+</div>
 {% endblock %}

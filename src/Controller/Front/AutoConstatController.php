@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Front;
 
 use App\Entity\Constat;
 use App\Form\Constat1Type;
@@ -17,12 +17,12 @@ class AutoConstatController extends AbstractController
     #[Route('/', name: 'app_auto_constat_index', methods: ['GET'])]
     public function index(ConstatRepository $constatRepository): Response
     {
-        return $this->render('auto_constat/index.html.twig', [
+        return $this->render('front/auto_constat/index.html.twig', [
             'constats' => $constatRepository->findAll(),
         ]);
     }
 
-   #[Route('/addconstat', name: 'addconstat', methods: ['GET', 'POST'])]
+   #[Route('/addconstat', name: 'add_constat', methods: ['GET', 'POST'])]
 public function addconstat(EntityManagerInterface $entityManager, Request $request): Response
 {
     $constat = new Constat();
@@ -36,9 +36,9 @@ public function addconstat(EntityManagerInterface $entityManager, Request $reque
         return $this->redirectToRoute('app_auto_constat_index');
     }
 
-    return $this->render('auto_constat/new.html.twig', [
+    return $this->render('front/auto_constat/new.html.twig', [
         'constat' => $constat,
-        'form' => $form,
+        'form' => $form->createView(),
     ]);
 }
 
@@ -46,7 +46,7 @@ public function addconstat(EntityManagerInterface $entityManager, Request $reque
     #[Route('/showconstat/{id}', name: 'showconstat', methods: ['GET'])]
     public function showconstat(Constat $constat): Response
     {
-        return $this->render('auto_constat/show.html.twig', [
+        return $this->render('front/auto_constat/show.html.twig', [
             'constat' => $constat,
         ]);
     }
@@ -64,19 +64,11 @@ public function addconstat(EntityManagerInterface $entityManager, Request $reque
             return $this->redirectToRoute('app_auto_constat_index');
         }
 
-        return $this->render('auto_constat/edit.html.twig', [
-            'form' => $form,
+        return $this->render('front/auto_constat/edit.html.twig', [
+            'form' => $form->createView(),
+            'constat'=> $constat
         ]);
     }
 
-    #[Route('/deleteconstat/{id}', name: 'deleteconstat', methods: ['POST'])]
-    public function deleteconstat(Request $request, Constat $constat, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$constat->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($constat);
-            $entityManager->flush();
-        }
 
-        return $this->redirectToRoute('app_auto_constat_index');
-    }
 }

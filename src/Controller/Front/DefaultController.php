@@ -6,13 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AssuranceController extends AbstractController
+class DefaultController extends AbstractController
 {
-    #[Route('/assurance', name: 'app_assurance')]
+    #[Route('/', name: 'app_homepage')]
     public function index(): Response
     {
-        return $this->render('assurance/index.html.twig', [
-            'controller_name' => 'AssuranceController',
-        ]);
+        return $this->render('front/index.html.twig');
     }
 }

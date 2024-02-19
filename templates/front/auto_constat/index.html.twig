@@ -1,8 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'front/base_front.html.twig' %}
 
 {% block title %}Constat index{% endblock %}
 
 {% block body %}
+<section class="contact" id="contact" style="margin-top: 10rem; min-height: 450px">
     <h1>Constat index</h1>
 
     <table class="table">
@@ -41,5 +42,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('addconstat') }}">Create new</a>
+    <a href="{{ path('add_constat') }}">Create new</a>
+</section>
 {% endblock %}

@@ -29,8 +29,10 @@ class Expert
 
     #[ORM\Column(length: 255)]
     private ?string $email = null;
+    
 
     #[ORM\Column(length: 255)]
+    
     private ?string $password = null;
 
     #[ORM\OneToMany(targetEntity: Constat::class, mappedBy: 'expert')]
